@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import calendar from './components/Calendar'
+import Schedule from './components/Schedule'
+import Role from './components/Role'
+import Work from './components/Work'
+import Colleague from './components/Colleague'
+import Lists from './components/calender/Lists'
 
 Vue.use(Router)
 
@@ -10,16 +15,31 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: calendar
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/calendar',
+      component: calendar,
+      children: [{
+        path: '/calendar/setted',
+        component: Lists
+      }]
+    },
+    {
+      path: '/role',
+      component: Role
+    },
+    {
+      path: '/work',
+      component: Work
+    },
+    {
+      path: '/colleague',
+      component: Colleague
+    },
+    {
+      path: '/schedule',
+      component: Schedule
     }
   ]
 })
